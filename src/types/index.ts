@@ -209,7 +209,94 @@ export interface WalletAddress {
   label: string;
 }
 
-// --- Simulation ---
+// --- Monte Carlo Walkthrough ---
+
+export type DistributionType = 'normal' | 'lognormal' | 'uniform' | 'empirical';
+
+export interface StateVector {
+  exchange_liquid_assets: number;
+  customer_liabilities: number;
+  alameda_nav: number;
+  ftt_price: number;
+  btc_price: number;
+  withdrawal_rate: number;
+  regulatory_pressure_index: number;
+  media_sentiment_index: number;
+  liquidity_gap: number;
+}
+
+export interface DistributionConfig {
+  type: DistributionType;
+  mean: number;
+  variance: number;
+  min?: number;
+  max?: number;
+  empiricalSamples?: number[];
+  confidence: number;
+  label: string;
+}
+
+export interface DecisionForkConfig {
+  disclosureDelayDays: DistributionConfig;
+  coverageRatio: DistributionConfig;
+  btcPriceDrift: DistributionConfig;
+  riskSentimentIndex: DistributionConfig;
+  regulatoryResponseSpeed: DistributionConfig;
+}
+
+export interface NarrativeChapterConfig {
+  id: string;
+  title: string;
+  historical_date_range: {
+    start: string;
+    end: string;
+  };
+  baseline_state_vector: StateVector;
+  decision_fork_config: DecisionForkConfig;
+  narrative_template: string;
+}
+
+export interface OutcomeProbability {
+  label: 'orderly_wind_down' | 'disorderly_collapse' | 'criminal_charges' | 'regulatory_settlement';
+  probability: number;
+}
+
+export interface CustomerRecoverySummary {
+  values: number[];
+  expectedValue: number;
+  ciLow: number;
+  ciHigh: number;
+}
+
+export interface SimulationPathSummary {
+  day: number;
+  median: number;
+  p10: number;
+  p90: number;
+  p5: number;
+  p95: number;
+}
+
+export interface SimulationRunSummary {
+  run_id: string;
+  chapter_id: string;
+  parameter_config: DecisionForkConfig;
+  seed: number;
+  outcome_summary: OutcomeProbability[];
+  final_state_vector: StateVector;
+  full_distribution_snapshot: {
+    liquidityGap: number[];
+    recoveryRate: number[];
+    fttTerminalPrice: number[];
+  };
+  fan_chart: SimulationPathSummary[];
+  recovery_distribution: CustomerRecoverySummary;
+  ftt_price_trajectory: SimulationPathSummary[];
+  likely_path_narrative: string;
+  generatedAt: string;
+}
+
+// --- Simulation (legacy module) ---
 
 export interface SimulationRun {
   id: string;

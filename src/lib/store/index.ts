@@ -2,29 +2,20 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { ComplexityMode, ViewMode } from '@/types';
+import type { ComplexityMode, SimulationRunSummary, StateVector, ViewMode } from '@/types';
 
 // --- Global App Store ---
 
 interface AppState {
-  // Complexity mode: beginner | researcher | expert
   complexityMode: ComplexityMode;
   setComplexityMode: (mode: ComplexityMode) => void;
-
-  // Play (walkthrough) vs Explore (dashboard)
   viewMode: ViewMode;
   setViewMode: (mode: ViewMode) => void;
-
-  // Master timeline scrubber date
   viewDate: Date;
   setViewDate: (date: Date) => void;
-
-  // Sidebar collapsed state
   sidebarCollapsed: boolean;
   setSidebarCollapsed: (collapsed: boolean) => void;
   toggleSidebar: () => void;
-
-  // Detail drawer
   drawerOpen: boolean;
   drawerContent: DrawerContent | null;
   openDrawer: (content: DrawerContent) => void;
@@ -43,17 +34,13 @@ export const useAppStore = create<AppState>()(
     (set) => ({
       complexityMode: 'beginner',
       setComplexityMode: (mode) => set({ complexityMode: mode }),
-
       viewMode: 'play',
       setViewMode: (mode) => set({ viewMode: mode }),
-
       viewDate: new Date('2022-11-11'),
       setViewDate: (date) => set({ viewDate: date }),
-
       sidebarCollapsed: false,
       setSidebarCollapsed: (collapsed) => set({ sidebarCollapsed: collapsed }),
       toggleSidebar: () => set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
-
       drawerOpen: false,
       drawerContent: null,
       openDrawer: (content) => set({ drawerOpen: true, drawerContent: content }),
@@ -72,27 +59,27 @@ export const useAppStore = create<AppState>()(
 
 // --- Walkthrough Store ---
 
+type ChainingSelection = 'median' | 'p10' | 'p90' | 'custom';
+
 interface WalkthroughState {
   currentChapter: number;
   setCurrentChapter: (chapter: number) => void;
-
-  // Track which chapters have been read
   completedChapters: Set<number>;
   markChapterComplete: (chapter: number) => void;
-
-  // Decision fork selections: chapterId -> optionId
   decisions: Record<number, string>;
   makeDecision: (chapter: number, optionId: string) => void;
-
-  // Whether current fork has been revealed
   forkRevealed: boolean;
   setForkRevealed: (revealed: boolean) => void;
-
-  // Whether walkthrough is complete
   walkthroughComplete: boolean;
   setWalkthroughComplete: (complete: boolean) => void;
 
-  // Reset walkthrough progress
+  simulationRuns: Record<string, SimulationRunSummary[]>;
+  saveSimulationRun: (chapterId: string, run: SimulationRunSummary) => void;
+  selectedChainState: Record<string, StateVector>;
+  setSelectedChainState: (chapterId: string, stateVector: StateVector) => void;
+  chainSelectionMode: ChainingSelection;
+  setChainSelectionMode: (mode: ChainingSelection) => void;
+
   resetWalkthrough: () => void;
 }
 
@@ -118,6 +105,24 @@ export const useWalkthroughStore = create<WalkthroughState>()((set) => ({
   walkthroughComplete: false,
   setWalkthroughComplete: (complete) => set({ walkthroughComplete: complete }),
 
+  simulationRuns: {},
+  saveSimulationRun: (chapterId, run) =>
+    set((state) => ({
+      simulationRuns: {
+        ...state.simulationRuns,
+        [chapterId]: [run, ...(state.simulationRuns[chapterId] ?? [])],
+      },
+    })),
+
+  selectedChainState: {},
+  setSelectedChainState: (chapterId, stateVector) =>
+    set((state) => ({
+      selectedChainState: { ...state.selectedChainState, [chapterId]: stateVector },
+    })),
+
+  chainSelectionMode: 'median',
+  setChainSelectionMode: (mode) => set({ chainSelectionMode: mode }),
+
   resetWalkthrough: () =>
     set({
       currentChapter: 1,
@@ -125,5 +130,8 @@ export const useWalkthroughStore = create<WalkthroughState>()((set) => ({
       decisions: {},
       forkRevealed: false,
       walkthroughComplete: false,
+      simulationRuns: {},
+      selectedChainState: {},
+      chainSelectionMode: 'median',
     }),
 }));
