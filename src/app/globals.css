@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  /* Background colors */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #1c2128;
+  --bg-surface: #21262d;
+  --bg-surface-hover: #292e36;
+
+  /* Accent colors — FTX amber, deliberately desaturated */
+  --accent-amber: #d4956a;
+  --accent-amber-dim: #a06b42;
+  --accent-amber-bright: #e8b08a;
+
+  /* Evidence Confidence dots */
+  --confidence-green: #3fb950;
+  --confidence-yellow: #d29922;
+  --confidence-red: #f85149;
+
+  /* Text colors */
+  --text-primary: #e6edf3;
+  --text-secondary: #b1bac4;
+  --text-muted: #6e7681;
+  --text-inverse: #0d1117;
+
+  /* Border colors */
+  --border-default: #30363d;
+  --border-subtle: #21262d;
+  --border-strong: #6e7681;
+
+  /* Semantic colors */
+  --danger: #f85149;
+  --success: #3fb950;
+  --warning: #d29922;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Narrative / long-form content uses Lora serif */
+.font-narrative {
+  font-family: 'Lora', Georgia, serif;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(212, 149, 106, 0.3);
+  color: var(--text-primary);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  /* Confidence dot base styles */
+  .confidence-dot {
+    @apply inline-block w-2.5 h-2.5 rounded-full;
+  }
+
+  .confidence-established {
+    background-color: var(--confidence-green);
+  }
+
+  .confidence-disputed {
+    background-color: var(--confidence-yellow);
+  }
+
+  .confidence-alleged {
+    background-color: var(--confidence-red);
+  }
+
+  /* Glass effect for surfaces */
+  .glass {
+    background: rgba(22, 27, 34, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* Gradient text effect for headings */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--text-primary), var(--accent-amber));
+  }
+}
