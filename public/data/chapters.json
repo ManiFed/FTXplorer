@@ -1,0 +1,774 @@
+[
+  {
+    "id": "ch-01-origins",
+    "number": 1,
+    "title": "The Effective Altruist",
+    "subtitle": "How a young MIT grad's utilitarian worldview led him from Jane Street to crypto — and planted the seeds of an empire built on good intentions.",
+    "dateRange": { "start": "2017-09-01", "end": "2019-04-30" },
+    "narrative": "Sam Bankman-Fried left his quantitative trading job at Jane Street Capital in September 2017 with an unusual plan: make as much money as possible, then give it all away. This philosophy — earning to give — was central to the Effective Altruism movement he'd embraced at MIT.\n\nHis first venture, Alameda Research, launched in November 2017 as a crypto trading firm. The name was deliberately bland — chosen to avoid triggering compliance filters at banks. Early on, Alameda exploited the 'kimchi premium,' an arbitrage opportunity where Bitcoin traded at a significant premium on South Korean exchanges compared to US ones.\n\nBy early 2019, Bankman-Fried saw an even bigger opportunity: building the exchange itself. FTX — short for 'Futures Exchange' — launched in May 2019 with a focus on derivatives trading. From day one, Alameda Research and FTX were deeply intertwined, sharing offices, staff, and — critically — financial infrastructure.\n\nThe dual structure would prove fateful. Alameda was both FTX's largest market maker and its most privileged customer, with special access that no other trader enjoyed.",
+    "keyFacts": [
+      { "text": "SBF left Jane Street Capital in September 2017 to pursue crypto trading", "confidenceLevel": "established" },
+      { "text": "Alameda Research was founded in November 2017, initially exploiting crypto arbitrage", "confidenceLevel": "established" },
+      { "text": "FTX exchange launched in May 2019 with Alameda as its primary market maker", "confidenceLevel": "established" },
+      { "text": "Alameda had special exemptions from FTX's auto-liquidation engine from the start", "confidenceLevel": "established" },
+      { "text": "The name 'Alameda Research' was chosen to sound innocuous to banks", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "article",
+        "author": "Sequoia Capital",
+        "date": "2022-09-22",
+        "content": "SBF's overthinking about what to do with his life led him to effective altruism and the concept of earning to give.",
+        "attribution": "Sequoia Capital Partner Profile (since deleted)"
+      },
+      {
+        "type": "court-filing",
+        "date": "2023-10-05",
+        "content": "From the outset, Alameda Research had a virtually unlimited line of credit on FTX, funded by FTX customer deposits.",
+        "attribution": "SDNY Prosecution Opening Statement, United States v. Bankman-Fried"
+      }
+    ],
+    "chartConfig": {
+      "type": "line",
+      "title": "Bitcoin Price & Key FTX Milestones",
+      "dataKey": "btc-price-early",
+      "datasets": [
+        {
+          "label": "BTC Price (USD)",
+          "color": "#d4956a",
+          "data": [
+            { "date": "2017-09-01", "value": 4700 },
+            { "date": "2017-12-01", "value": 17000 },
+            { "date": "2018-03-01", "value": 8500 },
+            { "date": "2018-06-01", "value": 6400 },
+            { "date": "2018-12-01", "value": 3200 },
+            { "date": "2019-04-01", "value": 5300 }
+          ]
+        }
+      ],
+      "yAxisLabel": "USD",
+      "annotations": [
+        { "date": "2017-11-01", "label": "Alameda Founded", "color": "#3fb950" },
+        { "date": "2019-05-01", "label": "FTX Launches", "color": "#d4956a" }
+      ]
+    },
+    "decisionFork": {
+      "prompt": "You're starting a crypto exchange. Your own trading firm will be the biggest market maker. How do you structure this relationship?",
+      "context": "Having your trading firm as the primary market maker provides liquidity from day one but creates massive conflicts of interest.",
+      "options": [
+        {
+          "id": "wall-off",
+          "label": "Strict separation with independent oversight",
+          "consequence": "Slower growth, but clear boundaries prevent conflicts. This is what regulations typically require.",
+          "isActual": false
+        },
+        {
+          "id": "privileged-access",
+          "label": "Give the trading firm special access and exemptions",
+          "consequence": "Faster growth and deeper liquidity, but the trading firm can exploit customers. This is what FTX actually did.",
+          "isActual": true
+        },
+        {
+          "id": "spin-off",
+          "label": "Spin off the trading firm entirely before launch",
+          "consequence": "Eliminates conflicts but sacrifices early competitive advantage in liquidity.",
+          "isActual": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "ch-02-growth-machine",
+    "number": 2,
+    "title": "The Growth Machine",
+    "subtitle": "FTX raised billions from the world's savviest investors — who somehow missed the red flags hiding in plain sight.",
+    "dateRange": { "start": "2019-05-01", "end": "2021-07-31" },
+    "narrative": "FTX grew at a staggering pace. Within two years of its founding, it had become one of the top five crypto exchanges globally by volume. The exchange attracted traders with innovative products: tokenized stocks, prediction markets, and a dizzying array of derivatives.\n\nThe venture capital world took notice. In July 2021, FTX raised $900 million in a Series B round at an $18 billion valuation — one of the largest VC rounds in history. The investor list read like a who's who of finance: Sequoia Capital, SoftBank, Paradigm, Tiger Global, and dozens more.\n\nBut the due diligence was remarkably shallow. FTX had no board of directors. Its accounting was handled by obscure firms. Alameda's special privileges on the exchange were not disclosed. And the corporate structure — a maze of over 130 entities spread across multiple jurisdictions — was designed to be opaque.\n\nCritically, FTX's own terms of service stated that customer deposits belonged to customers and would not be lent out or used for the company's own purposes. Behind the scenes, the opposite was happening.",
+    "keyFacts": [
+      { "text": "FTX raised $900M at an $18B valuation in July 2021 Series B", "confidenceLevel": "established" },
+      { "text": "Investors included Sequoia, SoftBank, Paradigm, Tiger Global, and others", "confidenceLevel": "established" },
+      { "text": "FTX had no board of directors throughout its existence", "confidenceLevel": "established" },
+      { "text": "Over 130 corporate entities were spread across multiple jurisdictions", "confidenceLevel": "established" },
+      { "text": "FTX Terms of Service explicitly stated customer funds would not be used by the company", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "document",
+        "date": "2021-07-20",
+        "content": "FTX Trading Ltd has raised $900 million in a Series B funding round, making it one of the most valuable crypto companies globally.",
+        "attribution": "FTX Press Release, July 2021"
+      },
+      {
+        "type": "court-filing",
+        "date": "2023-10-12",
+        "content": "None of the customers were told their money was being taken. FTX's own terms of service said customer assets belonged to customers.",
+        "attribution": "Prosecution Trial Exhibit, SDNY"
+      }
+    ],
+    "chartConfig": {
+      "type": "bar",
+      "title": "FTX Fundraising Rounds",
+      "dataKey": "fundraising",
+      "datasets": [
+        {
+          "label": "Amount Raised (Millions USD)",
+          "color": "#d4956a",
+          "data": [
+            { "date": "2019-12-01", "value": 8 },
+            { "date": "2020-08-01", "value": 80 },
+            { "date": "2021-07-01", "value": 900 },
+            { "date": "2022-01-01", "value": 400 },
+            { "date": "2022-10-01", "value": 0 }
+          ]
+        }
+      ],
+      "yAxisLabel": "Millions USD"
+    }
+  },
+  {
+    "id": "ch-03-alameda-secret",
+    "number": 3,
+    "title": "Alameda's Secret",
+    "subtitle": "Inside the trading firm that had a virtually unlimited credit line — funded by money that didn't belong to it.",
+    "dateRange": { "start": "2019-05-01", "end": "2022-05-31" },
+    "narrative": "At the heart of the FTX fraud was a single, devastating mechanism: Alameda Research had a secret, virtually unlimited line of credit on FTX, funded by customer deposits.\n\nWhen customers deposited money into FTX, their funds were often routed to accounts controlled by Alameda. Through a backdoor in FTX's code — later revealed in trial testimony by former engineering director Nishad Singh — Alameda could withdraw funds without triggering the normal balance checks that applied to every other user.\n\nAlameda used this money for everything: risky trading bets, venture capital investments, political donations, luxury real estate purchases in the Bahamas, and personal loans to executives. At one point, Alameda's balance on FTX showed a negative balance of over $8 billion — money taken directly from customer accounts.\n\nCaroline Ellison, Alameda's CEO and SBF's on-and-off romantic partner, later testified that she was directed by SBF to use customer funds and to prepare misleading balance sheets that hid Alameda's true financial exposure.",
+    "keyFacts": [
+      { "text": "Alameda had a secret 'allow negative' flag in FTX's code allowing unlimited borrowing", "confidenceLevel": "established" },
+      { "text": "Customer deposits were commingled with Alameda's trading funds", "confidenceLevel": "established" },
+      { "text": "Alameda's negative balance on FTX exceeded $8 billion at its peak", "confidenceLevel": "established" },
+      { "text": "Caroline Ellison testified she was directed by SBF to use customer funds", "confidenceLevel": "established" },
+      { "text": "Misleading balance sheets were created to hide the true exposure", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "testimony",
+        "author": "Caroline Ellison",
+        "date": "2023-10-10",
+        "content": "Sam directed me to prepare alternative balance sheets for Alameda that would make it look like we owed less to FTX than we actually did.",
+        "attribution": "Caroline Ellison testimony, United States v. Bankman-Fried"
+      },
+      {
+        "type": "testimony",
+        "author": "Nishad Singh",
+        "date": "2023-10-16",
+        "content": "There was a feature in the code that allowed Alameda to have a negative balance. No other account on FTX could do this.",
+        "attribution": "Nishad Singh testimony, United States v. Bankman-Fried"
+      }
+    ],
+    "decisionFork": {
+      "prompt": "You discover your trading firm has quietly spent $8 billion of customer money. The market is still stable. What do you do?",
+      "context": "Alameda's losses mounted through bad trades, venture bets, and lavish spending. The deficit was hidden from customers, investors, and regulators.",
+      "options": [
+        {
+          "id": "disclose",
+          "label": "Disclose the deficit and seek emergency funding",
+          "consequence": "Likely triggers immediate regulatory action and loss of trust, but limits the damage and is legally required.",
+          "isActual": false
+        },
+        {
+          "id": "hide-and-hope",
+          "label": "Hide the losses and hope the market recovers",
+          "consequence": "The deficit keeps growing. When it's finally exposed, the damage is catastrophic. This is what actually happened.",
+          "isActual": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "ch-04-ftt-house-of-cards",
+    "number": 4,
+    "title": "The FTT House of Cards",
+    "subtitle": "How a self-created token became the collateral underpinning billions in liabilities — a circular scheme destined to unravel.",
+    "dateRange": { "start": "2019-07-01", "end": "2022-10-31" },
+    "narrative": "FTX created its own token, FTT, in July 2019. Like many exchange tokens, FTT offered fee discounts and staking rewards. But FTT served a far more dangerous purpose: it became the primary collateral backing Alameda Research's enormous liabilities.\n\nThe circularity was breathtaking. FTX created FTT out of thin air. Alameda held massive quantities of FTT. Alameda then used this FTT as collateral to borrow billions from FTX — which was really customer money. The 'collateral' was only valuable because of confidence in FTX itself.\n\nAt its peak, FTT had a market cap of over $9 billion, but true liquidity was a fraction of that. Most FTT was held by insiders. If anyone tried to sell a significant portion, the price would collapse — and with it, the collateral backing Alameda's borrowings.\n\nThis circular dependency meant that any loss of confidence in FTX would trigger a death spiral: falling FTT price → inadequate collateral → forced liquidation → more selling → lower price. It was a textbook bank run waiting to happen, built on a token that FTX itself had invented.",
+    "keyFacts": [
+      { "text": "FTT token launched in July 2019, reaching a peak market cap of over $9 billion", "confidenceLevel": "established" },
+      { "text": "Alameda used FTT as primary collateral for its multi-billion-dollar borrowings from FTX", "confidenceLevel": "established" },
+      { "text": "Most FTT supply was held by insiders (FTX, Alameda, and related parties)", "confidenceLevel": "established" },
+      { "text": "The circular collateral structure meant a confidence crisis would trigger a death spiral", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "article",
+        "author": "Ian Allison",
+        "date": "2022-11-02",
+        "content": "Alameda Research's balance sheet is full of FTX's exchange token, FTT. The trading firm held $3.66 billion of 'unlocked FTT' and $2.16 billion of 'FTT collateral.'",
+        "attribution": "CoinDesk, 'Divisions in Sam Bankman-Fried's Crypto Empire Blur on His Trading Titan Alameda's Balance Sheet'"
+      },
+      {
+        "type": "testimony",
+        "author": "Caroline Ellison",
+        "date": "2023-10-10",
+        "content": "A large portion of Alameda's assets were in FTT and other tokens that Sam had invested in. We couldn't sell them without crashing the price.",
+        "attribution": "Caroline Ellison testimony, United States v. Bankman-Fried"
+      }
+    ],
+    "chartConfig": {
+      "type": "line",
+      "title": "FTT Token Price",
+      "dataKey": "ftt-price",
+      "datasets": [
+        {
+          "label": "FTT Price (USD)",
+          "color": "#d4956a",
+          "data": [
+            { "date": "2019-08-01", "value": 1.5 },
+            { "date": "2020-01-01", "value": 2.0 },
+            { "date": "2020-06-01", "value": 3.5 },
+            { "date": "2021-01-01", "value": 12 },
+            { "date": "2021-05-01", "value": 55 },
+            { "date": "2021-09-01", "value": 75 },
+            { "date": "2021-11-01", "value": 50 },
+            { "date": "2022-03-01", "value": 40 },
+            { "date": "2022-06-01", "value": 25 },
+            { "date": "2022-10-01", "value": 22 }
+          ]
+        }
+      ],
+      "yAxisLabel": "USD",
+      "annotations": [
+        { "date": "2022-11-02", "label": "CoinDesk Exposé", "color": "#f85149" }
+      ]
+    }
+  },
+  {
+    "id": "ch-05-influence-machine",
+    "number": 5,
+    "title": "The Influence Machine",
+    "subtitle": "SBF became Washington's favorite crypto mogul — spending tens of millions on political donations funded by stolen customer money.",
+    "dateRange": { "start": "2020-01-01", "end": "2022-11-01" },
+    "narrative": "While Alameda was hemorrhaging customer funds, Sam Bankman-Fried was building one of the most sophisticated political influence operations in recent American history. He became the second-largest individual donor to the Democratic Party in the 2022 election cycle, contributing over $40 million.\n\nBut the donations weren't limited to one party. Through a system of straw donors — including FTX co-founder Gary Wang and engineering director Nishad Singh — SBF also funneled millions to Republican candidates and PACs. Ryan Salame, FTX's co-CEO, donated heavily to Republican causes.\n\nThe money bought extraordinary access. SBF testified before Congress multiple times, met with SEC Chair Gary Gensler, and was consulted by lawmakers drafting crypto legislation. He positioned FTX as the 'responsible' exchange that welcomed regulation — even as the company was committing massive fraud.\n\nThe political donations were funded by customer deposits. As prosecutors would later prove, the money SBF gave to politicians was not his to give. It was stolen from the people who trusted FTX with their savings.",
+    "keyFacts": [
+      { "text": "SBF donated over $40 million to political campaigns in the 2022 cycle", "confidenceLevel": "established" },
+      { "text": "He was the second-largest individual donor to Democrats in 2022", "confidenceLevel": "established" },
+      { "text": "Straw donors were used to funnel money to both parties, concealing the true source", "confidenceLevel": "established" },
+      { "text": "Political donations were funded by misappropriated FTX customer deposits", "confidenceLevel": "established" },
+      { "text": "SBF met with SEC Chair Gary Gensler and testified before Congress", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "court-filing",
+        "date": "2023-08-14",
+        "content": "Bankman-Fried directed over $100 million in political contributions, much of which was made in the names of other people to circumvent contribution limits and to conceal the true source of the funds.",
+        "attribution": "DOJ Superseding Indictment, United States v. Bankman-Fried"
+      },
+      {
+        "type": "testimony",
+        "author": "Ryan Salame",
+        "date": "2023-09-07",
+        "content": "Sam asked me to make political contributions to Republican candidates. The money came from Alameda.",
+        "attribution": "Ryan Salame plea allocution"
+      }
+    ],
+    "decisionFork": {
+      "prompt": "You have access to billions in customer funds. Do you use some of it to buy political influence that could help shape crypto regulation in your favor?",
+      "context": "Favorable regulation could be worth billions to FTX. But using customer funds for political donations is illegal.",
+      "options": [
+        {
+          "id": "no-political",
+          "label": "Only use personal/company profits for political activity",
+          "consequence": "Less influence, but legal and ethical. Company profits were far smaller than the stolen funds used.",
+          "isActual": false
+        },
+        {
+          "id": "customer-funds",
+          "label": "Use customer deposits to fund a massive influence campaign",
+          "consequence": "Enormous political access, but it's fraud and campaign finance violations. This is what SBF did.",
+          "isActual": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "ch-06-bahamas-lifestyle",
+    "number": 6,
+    "title": "The Bahamas Penthouse",
+    "subtitle": "Inside the $256 million real estate spree and the luxury compound where FTX executives lived, worked, and partied — all funded by customers.",
+    "dateRange": { "start": "2021-09-01", "end": "2022-11-01" },
+    "narrative": "In September 2021, FTX moved its headquarters from Hong Kong to the Bahamas, drawn by favorable crypto regulations and tax benefits. What followed was an extraordinary spending spree.\n\nFTX and its executives purchased over $256 million in Bahamas real estate. SBF and other executives lived in a $30 million penthouse at the Albany resort. Alameda purchased properties for the parents of both SBF and FTX co-founder Gary Wang.\n\nThe lifestyle was lavish. A tight-knit group of roughly ten executives — many of whom had met at MIT or through the Effective Altruism community — lived together, dated each other, and made billion-dollar decisions in a communal living arrangement that blurred every possible professional boundary.\n\nThe compound operated more like a college dorm than a financial institution managing billions in customer assets. Decisions about customer funds were made over group meals, in hot tubs, and via Signal messages that auto-deleted. There was no compliance department, no risk management framework, and no adult supervision.",
+    "keyFacts": [
+      { "text": "FTX moved headquarters to the Bahamas in September 2021", "confidenceLevel": "established" },
+      { "text": "Over $256 million was spent on Bahamas real estate using company and customer funds", "confidenceLevel": "established" },
+      { "text": "SBF lived in a $30 million penthouse at the Albany resort", "confidenceLevel": "established" },
+      { "text": "Properties were purchased for SBF's parents using FTX-related funds", "confidenceLevel": "established" },
+      { "text": "Key decisions were made informally with no compliance oversight", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "court-filing",
+        "author": "John J. Ray III",
+        "date": "2022-11-17",
+        "content": "In the Bahamas, corporate funds of the FTX Group were used to purchase homes and other personal items for employees and advisors. I understand that company property was personally used by senior executives.",
+        "attribution": "Declaration of John J. Ray III, FTX Bankruptcy Filing"
+      },
+      {
+        "type": "article",
+        "author": "Financial Times",
+        "date": "2022-11-12",
+        "content": "The penthouse where Bankman-Fried lived was part of a sprawling Bahamas compound. Ten executives shared a compound, dated each other, and made decisions about billions of dollars in customer funds.",
+        "attribution": "Financial Times investigation"
+      }
+    ]
+  },
+  {
+    "id": "ch-07-terra-luna",
+    "number": 7,
+    "title": "The Terra/Luna Cascade",
+    "subtitle": "When the $60 billion Terra ecosystem collapsed, it exposed cracks across crypto — and pushed Alameda's hidden losses past the point of no return.",
+    "dateRange": { "start": "2022-05-01", "end": "2022-07-31" },
+    "narrative": "In May 2022, the Terra/Luna ecosystem collapsed in spectacular fashion. The algorithmic stablecoin UST lost its peg, and its sister token LUNA fell from $80 to near zero in days. Over $60 billion in value was destroyed.\n\nThe contagion spread rapidly. Crypto hedge fund Three Arrows Capital (3AC) collapsed, unable to meet margin calls. Lending platforms Celsius and Voyager froze customer withdrawals and filed for bankruptcy. The crypto market entered a deep winter.\n\nAlameda was caught in the blast. It had significant exposure to Terra/Luna and to other projects that collapsed in the cascading failures. The losses deepened Alameda's already massive deficit — the gap between what it owed FTX customers and what it actually held.\n\nSBF responded by positioning FTX as the industry's white knight. He offered bailouts to struggling companies — including a $250 million credit facility to BlockFi and a bid for Voyager's assets. But the rescue money came from the same source as everything else: FTX customer deposits. SBF was using stolen funds to pose as a savior, buying distressed assets and burnishing his reputation while the hole grew ever deeper.",
+    "keyFacts": [
+      { "text": "Terra/Luna collapse in May 2022 destroyed over $60 billion in value", "confidenceLevel": "established" },
+      { "text": "Three Arrows Capital, Celsius, and Voyager collapsed in the contagion", "confidenceLevel": "established" },
+      { "text": "Alameda suffered significant losses from the crypto contagion", "confidenceLevel": "established" },
+      { "text": "FTX offered $250M credit facility to BlockFi using customer funds", "confidenceLevel": "established" },
+      { "text": "SBF positioned himself as industry savior while deepening the fraud", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "testimony",
+        "author": "Caroline Ellison",
+        "date": "2023-10-11",
+        "content": "After the crash in June 2022, lenders started calling in their loans to Alameda. We used FTX customer funds to repay them. The hole got much bigger.",
+        "attribution": "Caroline Ellison testimony, United States v. Bankman-Fried"
+      },
+      {
+        "type": "tweet",
+        "author": "Sam Bankman-Fried",
+        "date": "2022-06-19",
+        "content": "FTX has a responsibility to seriously consider stepping in, even if it's at a loss to ourselves, to stem contagion.",
+        "attribution": "@SBF_FTX on Twitter"
+      }
+    ],
+    "chartConfig": {
+      "type": "line",
+      "title": "Crypto Market Contagion — May-July 2022",
+      "dataKey": "contagion",
+      "datasets": [
+        {
+          "label": "BTC Price (USD)",
+          "color": "#d4956a",
+          "data": [
+            { "date": "2022-05-01", "value": 38000 },
+            { "date": "2022-05-12", "value": 27000 },
+            { "date": "2022-05-20", "value": 30000 },
+            { "date": "2022-06-13", "value": 22000 },
+            { "date": "2022-06-18", "value": 18000 },
+            { "date": "2022-07-01", "value": 19500 },
+            { "date": "2022-07-31", "value": 23300 }
+          ]
+        },
+        {
+          "label": "LUNA Price (USD, rebased)",
+          "color": "#f85149",
+          "data": [
+            { "date": "2022-05-01", "value": 80 },
+            { "date": "2022-05-09", "value": 65 },
+            { "date": "2022-05-12", "value": 0.1 },
+            { "date": "2022-05-20", "value": 0.0001 },
+            { "date": "2022-06-13", "value": 0.0001 },
+            { "date": "2022-06-18", "value": 0.0001 },
+            { "date": "2022-07-01", "value": 0.0001 },
+            { "date": "2022-07-31", "value": 0.0001 }
+          ]
+        }
+      ],
+      "yAxisLabel": "USD",
+      "annotations": [
+        { "date": "2022-05-09", "label": "UST Depeg", "color": "#f85149" },
+        { "date": "2022-06-13", "label": "3AC Collapse", "color": "#d29922" }
+      ]
+    },
+    "decisionFork": {
+      "prompt": "The crypto market is crashing and lenders want their money back. You've been using customer deposits. Do you come clean or keep going?",
+      "context": "After the Terra/Luna collapse, Alameda's losses accelerated. Lenders demanded repayment. The deficit was growing rapidly.",
+      "options": [
+        {
+          "id": "come-clean",
+          "label": "Disclose the situation and halt operations",
+          "consequence": "Company likely fails, but customers might recover more funds. Legal consequences would still be severe but potentially mitigated.",
+          "isActual": false
+        },
+        {
+          "id": "double-down",
+          "label": "Use more customer funds to repay lenders and keep going",
+          "consequence": "The hole grows from $4B to $8B+. When it finally collapses, customers lose far more. This is what happened.",
+          "isActual": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "ch-08-coindesk-bombshell",
+    "number": 8,
+    "title": "The CoinDesk Bombshell",
+    "subtitle": "A leaked balance sheet, a devastating article, and the 96 hours that brought down a $32 billion empire.",
+    "dateRange": { "start": "2022-11-02", "end": "2022-11-08" },
+    "narrative": "On November 2, 2022, CoinDesk reporter Ian Allison published an article that would change everything. He had obtained a leaked copy of Alameda Research's balance sheet, and it revealed a shocking truth: the trading firm's assets were overwhelmingly composed of FTT — the token created by its sister company FTX.\n\nThe balance sheet showed Alameda holding $14.6 billion in assets, but $5.82 billion of that was in FTT and related tokens. The firm's entire financial foundation rested on a token whose value depended on confidence in FTX itself.\n\nThe article sent shockwaves through the crypto world. Two days later, on November 6, Binance CEO Changpeng 'CZ' Zhao announced via Twitter that Binance would liquidate its entire FTT holdings — approximately $530 million worth. He cited 'recent revelations' and compared the situation to the Terra/Luna collapse.\n\nCaroline Ellison desperately tweeted an offer to buy all of Binance's FTT at $22. It was a bluff — Alameda didn't have the money. The offer only confirmed to the market that something was deeply wrong.\n\nFTX customers began withdrawing en masse. On November 6 alone, $5 billion in withdrawal requests flooded in. The bank run had begun.",
+    "keyFacts": [
+      { "text": "CoinDesk published Alameda's leaked balance sheet on November 2, 2022", "confidenceLevel": "established" },
+      { "text": "Alameda held $5.82B in FTT and related tokens — the majority of its assets", "confidenceLevel": "established" },
+      { "text": "Binance CEO CZ announced liquidation of $530M in FTT on November 6", "confidenceLevel": "established" },
+      { "text": "$5 billion in customer withdrawal requests hit FTX on November 6 alone", "confidenceLevel": "established" },
+      { "text": "Caroline Ellison's offer to buy CZ's FTT at $22 revealed desperation", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "article",
+        "author": "Ian Allison",
+        "date": "2022-11-02",
+        "content": "The financials make concrete what industry insiders have long assumed: that Alameda is deeply enmeshed with FTX, and a portion of its balance sheet is in FTT, the native token of FTX.",
+        "attribution": "CoinDesk, 'Divisions in Sam Bankman-Fried's Crypto Empire Blur on His Trading Titan Alameda's Balance Sheet'"
+      },
+      {
+        "type": "tweet",
+        "author": "Changpeng Zhao (CZ)",
+        "date": "2022-11-06",
+        "content": "As part of Binance's exit from FTX equity last year, Binance received roughly $2.1 billion. Due to recent revelations, we have decided to liquidate any remaining FTT on our books.",
+        "attribution": "@caborage on Twitter"
+      },
+      {
+        "type": "tweet",
+        "author": "Caroline Ellison",
+        "date": "2022-11-06",
+        "content": "@cz_binance if you're looking to minimize the market impact on your FTT sales, Alameda will happily buy it all from you today at $22!",
+        "attribution": "@carolinecapital on Twitter"
+      }
+    ],
+    "chartConfig": {
+      "type": "line",
+      "title": "FTT Price Collapse — November 2022",
+      "dataKey": "ftt-collapse",
+      "datasets": [
+        {
+          "label": "FTT Price (USD)",
+          "color": "#f85149",
+          "data": [
+            { "date": "2022-11-01", "value": 25 },
+            { "date": "2022-11-02", "value": 24 },
+            { "date": "2022-11-05", "value": 23 },
+            { "date": "2022-11-06", "value": 22 },
+            { "date": "2022-11-07", "value": 18 },
+            { "date": "2022-11-08", "value": 5 }
+          ]
+        }
+      ],
+      "yAxisLabel": "USD",
+      "annotations": [
+        { "date": "2022-11-02", "label": "CoinDesk Article", "color": "#d29922" },
+        { "date": "2022-11-06", "label": "CZ Announces FTT Sale", "color": "#f85149" }
+      ]
+    }
+  },
+  {
+    "id": "ch-09-collapse",
+    "number": 9,
+    "title": "72 Hours of Chaos",
+    "subtitle": "From Binance's failed rescue attempt to bankruptcy filing — the final days of FTX unraveled at breathtaking speed.",
+    "dateRange": { "start": "2022-11-08", "end": "2022-11-11" },
+    "narrative": "On November 8, 2022, Changpeng Zhao announced that Binance had signed a non-binding letter of intent to acquire FTX. For a brief moment, it seemed like a rescue was possible. FTT's price partially recovered.\n\nBut the reprieve lasted less than 24 hours. On November 9, Binance pulled out. After preliminary due diligence, Binance said the problems were beyond its ability to help. Reports indicated the company had found an $8 billion hole in FTX's balance sheet — money that was simply gone.\n\nSBF scrambled to find other investors. He reportedly sought $8 billion in emergency funding, sending frantic messages to investors and rival exchange founders. None materialized.\n\nOn November 10, Bahamian regulators froze FTX Digital Markets' assets. SBF posted a long Twitter thread apologizing and saying he was trying to resolve the situation. He deleted several of the tweets shortly after posting them.\n\nOn November 11, FTX Trading, Alameda Research, and approximately 130 affiliated companies filed for Chapter 11 bankruptcy protection. SBF resigned as CEO. John J. Ray III — the restructuring expert who had overseen the Enron liquidation — was brought in to take over.\n\nRay's first impression was damning: 'Never in my career have I seen such a complete failure of corporate controls and such a complete absence of trustworthy financial information.'",
+    "keyFacts": [
+      { "text": "Binance signed LOI to acquire FTX on Nov 8, then pulled out on Nov 9", "confidenceLevel": "established" },
+      { "text": "Due diligence revealed an approximately $8 billion hole in FTX's balance sheet", "confidenceLevel": "established" },
+      { "text": "SBF sought $8 billion in emergency funding and was rejected by all", "confidenceLevel": "established" },
+      { "text": "FTX and 130+ affiliates filed Chapter 11 bankruptcy on November 11, 2022", "confidenceLevel": "established" },
+      { "text": "John J. Ray III, who oversaw Enron's liquidation, called it the worst corporate failure he had ever seen", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "tweet",
+        "author": "Changpeng Zhao (CZ)",
+        "date": "2022-11-08",
+        "content": "This afternoon, FTX asked for our help. There is a significant liquidity crunch. To protect users, we signed a non-binding LOI, intending to fully acquire FTX.com.",
+        "attribution": "@cz_binance on Twitter"
+      },
+      {
+        "type": "document",
+        "author": "John J. Ray III",
+        "date": "2022-11-17",
+        "content": "Never in my career have I seen such a complete failure of corporate controls and such a complete absence of trustworthy financial information as occurred here.",
+        "attribution": "Declaration of John J. Ray III, FTX Chapter 11 Filing"
+      },
+      {
+        "type": "tweet",
+        "author": "Sam Bankman-Fried",
+        "date": "2022-11-10",
+        "content": "I'm sorry. That's the biggest thing. I f***ed up, and should have done better.",
+        "attribution": "@SBF_FTX on Twitter (partially deleted)"
+      }
+    ],
+    "decisionFork": {
+      "prompt": "Binance has pulled out. The $8 billion hole is real. You're the CEO. What do you do in the final hours?",
+      "context": "No one will provide emergency funding. Customer withdrawals have been halted. Regulators are circling.",
+      "options": [
+        {
+          "id": "cooperate-fully",
+          "label": "Immediately file bankruptcy and cooperate with authorities",
+          "consequence": "Orderly wind-down begins sooner, potentially preserving more customer assets.",
+          "isActual": false
+        },
+        {
+          "id": "keep-tweeting",
+          "label": "Keep seeking bailouts while posting misleading tweets",
+          "consequence": "SBF tweeted 'assets are fine' and kept scrambling for days, delaying the inevitable and potentially allowing asset movement. This is what happened.",
+          "isActual": true
+        },
+        {
+          "id": "flee",
+          "label": "Attempt to move assets and avoid authorities",
+          "consequence": "Several hundred million in crypto was moved from FTX wallets in the chaotic final hours — the source remains disputed.",
+          "isActual": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "ch-10-midnight-heist",
+    "number": 10,
+    "title": "The Midnight Heist",
+    "subtitle": "As FTX filed for bankruptcy, hundreds of millions in crypto vanished from its wallets in one of the most brazen thefts in blockchain history.",
+    "dateRange": { "start": "2022-11-11", "end": "2022-11-21" },
+    "narrative": "In the hours surrounding FTX's bankruptcy filing on November 11, something extraordinary happened: approximately $477 million in cryptocurrency was drained from FTX wallets in what appeared to be unauthorized transactions.\n\nFTX's General Counsel tweeted that the company had been hacked. On-chain analysts watched in real time as funds moved through a complex series of swaps and bridge transactions, converting tokens to ETH to make them harder to freeze.\n\nThe identity of the attacker remained a mystery for over a year. Theories ranged from an outside hacker to an insider job. Some suspected SBF himself, or someone acting on his behalf, was trying to spirit away assets before they could be frozen.\n\nIn January 2024, US authorities charged a former SIM-swapping hacker trio with the theft, alleging they had exploited compromised employee credentials during the chaos of the bankruptcy filing. The timing — while the company was in maximum disarray — was no coincidence.\n\nSeparately, Bahamian authorities directed the movement of additional FTX assets into their own custody, further complicating the already chaotic situation. The bankruptcy estate would spend months untangling which transfers were authorized, which were theft, and which were regulatory seizures.",
+    "keyFacts": [
+      { "text": "Approximately $477 million was drained from FTX wallets around the bankruptcy filing", "confidenceLevel": "established" },
+      { "text": "Funds were rapidly swapped and bridged to complicate tracing", "confidenceLevel": "established" },
+      { "text": "In January 2024, three individuals were charged with the theft via SIM-swapping", "confidenceLevel": "established" },
+      { "text": "Bahamian regulators separately directed movement of FTX assets into their custody", "confidenceLevel": "established" },
+      { "text": "The bankruptcy estate faced months of work distinguishing theft from authorized transfers", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "tweet",
+        "author": "FTX General Counsel (Ryne Miller)",
+        "date": "2022-11-12",
+        "content": "Investigating abnormalities with wallet movements related to consolidation of FTX balances across exchanges. Unauthorized access.",
+        "attribution": "@rynemiller on Twitter"
+      },
+      {
+        "type": "court-filing",
+        "date": "2024-01-24",
+        "content": "The defendants executed a SIM swap attack that allowed them to gain access to an FTX employee's phone, which they used to access FTX systems and steal approximately $400 million in crypto assets.",
+        "attribution": "DOJ Indictment, January 2024"
+      }
+    ]
+  },
+  {
+    "id": "ch-11-arrest",
+    "number": 11,
+    "title": "The Arrest",
+    "subtitle": "Six weeks after FTX's collapse, Bahamian police arrived at SBF's apartment — ending the media tour and beginning the legal reckoning.",
+    "dateRange": { "start": "2022-11-12", "end": "2023-01-03" },
+    "narrative": "In the weeks between FTX's collapse and his arrest, Sam Bankman-Fried mounted an extraordinary media blitz. While most lawyers would advise silence, SBF gave interviews to virtually every major outlet: the New York Times, Good Morning America, Twitter Spaces with journalists, and a disastrous appearance at the DealBook conference.\n\nHis narrative was consistent: he was a well-meaning founder who made mistakes and lost track of the numbers. He claimed he didn't knowingly commit fraud. He hadn't read the code that gave Alameda special privileges. He was just bad at management.\n\nMeanwhile, the Southern District of New York was building its case. On December 12, 2022, Bahamian police arrested SBF at his apartment in Nassau. The US had filed a sealed indictment charging him with eight criminal counts including wire fraud, conspiracy to commit money laundering, and campaign finance violations.\n\nSBF was extradited to the United States on December 21 and initially released on a $250 million bail package — one of the largest in US history — secured by his parents' Palo Alto home. He would spend the next several months under house arrest at his parents' residence while awaiting trial.\n\nBefore his arrest, his former colleagues had already begun cooperating. Caroline Ellison, Gary Wang, and Nishad Singh all pleaded guilty and agreed to testify against him.",
+    "keyFacts": [
+      { "text": "SBF was arrested in the Bahamas on December 12, 2022", "confidenceLevel": "established" },
+      { "text": "He was charged with eight criminal counts including wire fraud and conspiracy", "confidenceLevel": "established" },
+      { "text": "Bail was set at $250 million — one of the largest in US history", "confidenceLevel": "established" },
+      { "text": "Caroline Ellison, Gary Wang, and Nishad Singh all pleaded guilty and agreed to cooperate", "confidenceLevel": "established" },
+      { "text": "SBF gave numerous media interviews against legal advice before his arrest", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "court-filing",
+        "date": "2022-12-13",
+        "content": "The defendant, Samuel Bankman-Fried, perpetrated a scheme to defraud customers of FTX by misappropriating those customers' deposits and using billions of dollars of those funds for his own personal benefit and to help grow his crypto empire.",
+        "attribution": "SDNY Sealed Indictment, United States v. Bankman-Fried"
+      },
+      {
+        "type": "article",
+        "author": "Andrew Ross Sorkin",
+        "date": "2022-11-30",
+        "content": "At the DealBook Summit, SBF said: 'I didn't ever try to commit fraud. I didn't want any of this to happen. I was certainly not nearly as competent as I thought I was.'",
+        "attribution": "New York Times DealBook Conference transcript"
+      }
+    ]
+  },
+  {
+    "id": "ch-12-cooperators",
+    "number": 12,
+    "title": "The Inner Circle Breaks",
+    "subtitle": "One by one, SBF's closest allies turned against him — offering devastating testimony in exchange for leniency.",
+    "dateRange": { "start": "2022-12-01", "end": "2023-10-03" },
+    "narrative": "The prosecution's case against SBF was built largely on the testimony of the people who knew him best — and who had participated in the fraud alongside him.\n\nCaroline Ellison, Alameda's CEO and SBF's former girlfriend, pleaded guilty in December 2022 to seven charges including wire fraud and conspiracy. She agreed to full cooperation.\n\nGary Wang, FTX's co-founder and chief technology officer, also pleaded guilty in December 2022. Wang had written the code that gave Alameda its special privileges on FTX — the 'allow negative' flag that enabled the entire scheme.\n\nNishad Singh, FTX's engineering director, pleaded guilty in February 2023. Singh had been responsible for much of FTX's codebase and was one of the straw donors for political contributions.\n\nRyan Salame, FTX's co-CEO, pleaded guilty in September 2023 to campaign finance violations and operating an unlicensed money transmission business.\n\nEach cooperator provided the prosecution with detailed accounts of how the fraud worked, how SBF directed it, and how elaborate steps were taken to conceal it from investors, regulators, and customers. Their testimony would form the backbone of the government's case at trial.",
+    "keyFacts": [
+      { "text": "Caroline Ellison pleaded guilty to seven charges in December 2022", "confidenceLevel": "established" },
+      { "text": "Gary Wang pleaded guilty and admitted to writing the code enabling the fraud", "confidenceLevel": "established" },
+      { "text": "Nishad Singh pleaded guilty in February 2023 and cooperated fully", "confidenceLevel": "established" },
+      { "text": "Ryan Salame pleaded guilty to campaign finance violations in September 2023", "confidenceLevel": "established" },
+      { "text": "All four cooperators agreed to testify against SBF at trial", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "testimony",
+        "author": "Gary Wang",
+        "date": "2023-10-06",
+        "content": "I committed wire fraud, securities fraud, and commodities fraud. I was directed by Sam to add special code that allowed Alameda to withdraw unlimited funds from FTX.",
+        "attribution": "Gary Wang testimony, United States v. Bankman-Fried"
+      },
+      {
+        "type": "testimony",
+        "author": "Caroline Ellison",
+        "date": "2023-10-10",
+        "content": "Sam told me to prepare misleading balance sheets. He told me we needed to hide how much Alameda had borrowed from FTX. I knew what we were doing was wrong.",
+        "attribution": "Caroline Ellison testimony, United States v. Bankman-Fried"
+      }
+    ]
+  },
+  {
+    "id": "ch-13-trial",
+    "number": 13,
+    "title": "The Trial",
+    "subtitle": "Over four weeks in a Manhattan courtroom, the full scope of the fraud was laid bare — ending with SBF's fateful decision to take the stand.",
+    "dateRange": { "start": "2023-10-03", "end": "2023-11-02" },
+    "narrative": "The trial of United States v. Sam Bankman-Fried began on October 3, 2023, in the Daniel Patrick Moynihan Courthouse in lower Manhattan, before Judge Lewis Kaplan.\n\nThe prosecution presented a methodical case over three weeks. Cooperating witnesses — Ellison, Wang, and Singh — provided devastating testimony. They described in granular detail how customer funds were misappropriated, how balance sheets were falsified, and how SBF directed every major decision.\n\nKey evidence included internal Signal messages, spreadsheets showing the growing deficit, and the code itself. Gary Wang walked the jury through the specific lines of code that gave Alameda its secret privileges.\n\nThen came the most dramatic moment: SBF took the stand in his own defense. Over two days of cross-examination by Assistant US Attorney Danielle Sassoon, SBF's carefully crafted narrative collapsed. He said 'I don't recall' or similar phrases over 140 times. He was confronted with his own tweets, interviews, and Signal messages that contradicted his claims of ignorance.\n\nThe jury deliberated for less than five hours. On November 2, 2023, they found Sam Bankman-Fried guilty on all seven counts: two counts of wire fraud, two counts of conspiracy to commit wire fraud, one count of securities fraud, one count of commodities fraud, and one count of money laundering.",
+    "keyFacts": [
+      { "text": "Trial began October 3, 2023 before Judge Lewis Kaplan in Manhattan", "confidenceLevel": "established" },
+      { "text": "Three cooperating witnesses (Ellison, Wang, Singh) testified against SBF", "confidenceLevel": "established" },
+      { "text": "SBF took the stand and said 'I don't recall' over 140 times during cross-examination", "confidenceLevel": "established" },
+      { "text": "The jury deliberated less than five hours before reaching a verdict", "confidenceLevel": "established" },
+      { "text": "SBF was found guilty on all seven counts on November 2, 2023", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "court-filing",
+        "date": "2023-11-02",
+        "content": "We the jury find the defendant, Samuel Bankman-Fried, guilty on all counts.",
+        "attribution": "Jury Verdict, United States v. Bankman-Fried, SDNY"
+      },
+      {
+        "type": "testimony",
+        "author": "Sam Bankman-Fried",
+        "date": "2023-10-30",
+        "content": "I made a number of mistakes. I didn't intend to commit fraud. I wasn't trying to move customer funds.",
+        "attribution": "SBF direct testimony, United States v. Bankman-Fried"
+      }
+    ],
+    "decisionFork": {
+      "prompt": "You're the defendant. Your lawyers advise against testifying. The cooperating witnesses have been devastating. Do you take the stand?",
+      "context": "Most defense attorneys advise against testifying. SBF was known for his media savvy but would face aggressive cross-examination by experienced prosecutors.",
+      "options": [
+        {
+          "id": "stay-silent",
+          "label": "Don't testify — let the defense case rest on cross-examination",
+          "consequence": "Avoids the devastating cross-examination. Most legal experts say this was the safer choice.",
+          "isActual": false
+        },
+        {
+          "id": "take-stand",
+          "label": "Take the stand and try to convince the jury directly",
+          "consequence": "SBF testified and was systematically dismantled on cross-examination, saying 'I don't recall' 140+ times. Many analysts believe this sealed the conviction.",
+          "isActual": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "ch-14-sentencing",
+    "number": 14,
+    "title": "25 Years",
+    "subtitle": "The sentence came down: a quarter century in federal prison — one of the harshest white-collar penalties in American history.",
+    "dateRange": { "start": "2023-11-03", "end": "2024-03-28" },
+    "narrative": "On March 28, 2024, Judge Lewis Kaplan sentenced Sam Bankman-Fried to 25 years in federal prison. The sentence was among the most severe for a white-collar crime in American history, though less than the 40-50 years prosecutors had requested.\n\nIn his sentencing memo, Judge Kaplan rejected SBF's continued claims of innocence and good intentions. He noted that SBF had shown no genuine remorse, had attempted to tamper with witnesses while on bail (by leaking Caroline Ellison's private diary to the New York Times), and had persistently tried to manipulate the narrative.\n\n'He knew it was wrong. He knew it was criminal,' Judge Kaplan said. 'He regrets that he made a bad bet about the likelihood of getting caught.'\n\nThe cooperating witnesses received far lighter sentences. Caroline Ellison was sentenced to two years. Gary Wang received no prison time due to his extraordinary cooperation. Nishad Singh also received no prison time. Ryan Salame received seven and a half years.\n\nSBF was also ordered to forfeit $11 billion in assets. He was remanded to FCI Hazelton, a medium-security federal prison in West Virginia.",
+    "keyFacts": [
+      { "text": "SBF was sentenced to 25 years in federal prison on March 28, 2024", "confidenceLevel": "established" },
+      { "text": "Judge Kaplan rejected SBF's claims of good intentions and noted lack of remorse", "confidenceLevel": "established" },
+      { "text": "SBF was ordered to forfeit $11 billion in assets", "confidenceLevel": "established" },
+      { "text": "Caroline Ellison received 2 years; Gary Wang and Nishad Singh received no prison time", "confidenceLevel": "established" },
+      { "text": "Ryan Salame was sentenced to 7.5 years", "confidenceLevel": "established" },
+      { "text": "SBF leaked Ellison's diary to the NYT while on bail, contributing to bail revocation", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "court-filing",
+        "author": "Judge Lewis Kaplan",
+        "date": "2024-03-28",
+        "content": "He knew it was wrong. He knew it was criminal. There is a risk that this man will be in a position to do something very bad in the future. He has not demonstrated genuine remorse.",
+        "attribution": "Judge Lewis Kaplan, Sentencing Remarks, United States v. Bankman-Fried"
+      },
+      {
+        "type": "court-filing",
+        "date": "2024-03-28",
+        "content": "The Court sentences the defendant to a term of imprisonment of 300 months, to be followed by 3 years of supervised release.",
+        "attribution": "Judgment, United States v. Bankman-Fried, SDNY"
+      }
+    ],
+    "chartConfig": {
+      "type": "bar",
+      "title": "Sentences — Key FTX Defendants",
+      "dataKey": "sentences",
+      "datasets": [
+        {
+          "label": "Prison Sentence (Years)",
+          "color": "#f85149",
+          "data": [
+            { "date": "SBF", "value": 25 },
+            { "date": "Salame", "value": 7.5 },
+            { "date": "Ellison", "value": 2 },
+            { "date": "Singh", "value": 0 },
+            { "date": "Wang", "value": 0 }
+          ]
+        }
+      ],
+      "yAxisLabel": "Years"
+    }
+  },
+  {
+    "id": "ch-15-aftermath",
+    "number": 15,
+    "title": "What Remains",
+    "subtitle": "The bankruptcy estate's remarkable recovery, the victims still waiting, and the lasting questions about crypto, regulation, and effective altruism.",
+    "dateRange": { "start": "2024-03-29", "end": "2025-12-31" },
+    "narrative": "The FTX bankruptcy estate, under the leadership of John J. Ray III, achieved what many thought impossible: recovering enough assets to repay creditors. Through aggressive litigation, asset recovery, and fortunate timing — crypto markets rebounded significantly in 2024 — the estate announced plans to distribute over 100% of allowed claims based on petition-date values.\n\nBut this headline number is misleading. Claims were valued at November 2022 prices, when Bitcoin traded around $16,000. By the time distributions began, Bitcoin had surged past $60,000. Customers who held crypto on FTX would receive the dollar value of their holdings at the time of collapse — not the far higher value those same holdings would be worth today. For many, the 'full recovery' represented a fraction of what they would have had if FTX had simply not stolen their money.\n\nThe broader impact continues to reverberate. The collapse accelerated crypto regulation worldwide. The SEC intensified enforcement actions. Congress debated comprehensive crypto legislation. The Effective Altruism movement faced a reckoning over its association with SBF.\n\nMillions of individuals and institutions were affected — from retail traders who lost their savings to sophisticated investors who lost hundreds of millions. The human stories behind the numbers remain the most devastating legacy of FTX.\n\nThe FTX saga stands as a cautionary tale about the dangers of concentrated power, inadequate oversight, and the willingness of sophisticated investors and regulators to be dazzled by growth, charisma, and the promise of good intentions.",
+    "keyFacts": [
+      { "text": "The FTX bankruptcy estate recovered enough to repay creditors over 100% of petition-date claims", "confidenceLevel": "established" },
+      { "text": "Claims were valued at November 2022 prices — far below later crypto market values", "confidenceLevel": "established" },
+      { "text": "Over 1 million creditors were affected globally", "confidenceLevel": "established" },
+      { "text": "The collapse accelerated crypto regulation and SEC enforcement worldwide", "confidenceLevel": "established" },
+      { "text": "The Effective Altruism movement faced significant reputational damage", "confidenceLevel": "established" }
+    ],
+    "primarySources": [
+      {
+        "type": "court-filing",
+        "author": "John J. Ray III",
+        "date": "2024-10-07",
+        "content": "The Plan provides for 100% recovery of bankruptcy claim amounts for non-governmental creditors, plus interest. This remarkable outcome reflects years of intensive work to recover assets.",
+        "attribution": "FTX Reorganization Plan Confirmation Filing"
+      },
+      {
+        "type": "article",
+        "date": "2024-02-01",
+        "content": "For FTX customers, 'made whole' is a bitter phrase. They're being repaid based on prices from the worst moment — when their exchange collapsed. The gains they would have seen in the 2024 bull market belong to someone else now.",
+        "attribution": "Analysis of FTX customer recovery shortfall"
+      }
+    ],
+    "decisionFork": {
+      "prompt": "Looking back at the full story, what do you think was the most critical failure point?",
+      "context": "The FTX collapse involved failures by founders, investors, auditors, regulators, and the broader crypto ecosystem. Where should accountability be focused?",
+      "options": [
+        {
+          "id": "founders",
+          "label": "The founders who chose to steal customer funds",
+          "consequence": "Individual criminal behavior was the proximate cause. But it thrived because of systemic failures in oversight.",
+          "isActual": true
+        },
+        {
+          "id": "investors",
+          "label": "The investors who failed at due diligence",
+          "consequence": "Billions were invested with minimal scrutiny. No board, opaque structure, and intertwined entities should have been disqualifying red flags.",
+          "isActual": false
+        },
+        {
+          "id": "regulators",
+          "label": "The regulators who failed to act despite warnings",
+          "consequence": "Regulatory gaps in crypto oversight allowed FTX to operate with virtually no supervision for years.",
+          "isActual": false
+        },
+        {
+          "id": "systemic",
+          "label": "The crypto ecosystem's structural lack of transparency",
+          "consequence": "Without the transparency standards required of traditional finance, fraud can hide in plain sight.",
+          "isActual": false
+        }
+      ]
+    }
+  }
+]
