@@ -7,27 +7,21 @@ import { PrimarySourceCallout } from './PrimarySourceCallout';
 import { AutoAnimatedChart } from './AutoAnimatedChart';
 import { DecisionFork } from './DecisionFork';
 import { WhatJustHappened } from './WhatJustHappened';
+import { CounterfactualLab } from './CounterfactualLab';
 import { useAppStore, useWalkthroughStore } from '@/lib/store';
 import type { Chapter } from '@/types';
 
 interface ChapterRendererProps {
   chapter: Chapter;
+  totalChapters: number;
 }
 
-export function ChapterRenderer({ chapter }: ChapterRendererProps) {
-  const { setViewDate } = useAppStore();
-  const {
-    decisions,
-    makeDecision,
-    forkRevealed,
-    setForkRevealed,
-    markChapterComplete,
-    setCurrentChapter,
-  } = useWalkthroughStore();
+export function ChapterRenderer({ chapter, totalChapters }: ChapterRendererProps) {
+  const { setViewDate, complexityMode } = useAppStore();
+  const { decisions, makeDecision, forkRevealed, setForkRevealed, markChapterComplete, setCurrentChapter } = useWalkthroughStore();
 
   const selectedOptionId = decisions[chapter.number];
 
-  // Sync the global timeline scrubber with this chapter's date range
   useEffect(() => {
     setViewDate(new Date(chapter.dateRange.start));
   }, [chapter.dateRange.start, setViewDate]);
@@ -45,17 +39,11 @@ export function ChapterRenderer({ chapter }: ChapterRendererProps) {
     setCurrentChapter(chapter.number + 1);
   };
 
+  const chapterPct = Math.round((chapter.number / totalChapters) * 100);
+
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={chapter.id}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className="min-h-screen"
-      >
-        {/* Chapter header */}
+      <motion.div key={chapter.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="min-h-screen">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,49 +51,41 @@ export function ChapterRenderer({ chapter }: ChapterRendererProps) {
           className="max-w-3xl mx-auto pt-12 pb-8 px-6"
         >
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-caption font-semibold text-accent-amber uppercase tracking-widest">
-              Chapter {chapter.number}
-            </span>
+            <span className="text-caption font-semibold text-accent-amber uppercase tracking-widest">Chapter {chapter.number}</span>
             <span className="text-caption text-text-muted">
               {new Date(chapter.dateRange.start).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-              {chapter.dateRange.end !== chapter.dateRange.start && (
-                <> — {new Date(chapter.dateRange.end).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</>
-              )}
+              {chapter.dateRange.end !== chapter.dateRange.start && <> — {new Date(chapter.dateRange.end).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</>}
             </span>
           </div>
-          <h2 className="text-display font-bold text-text-primary mb-2">
-            {chapter.title}
-          </h2>
-          <p className="text-body-lg text-text-secondary">
-            {chapter.subtitle}
-          </p>
+          <h2 className="text-display font-bold text-text-primary mb-2">{chapter.title}</h2>
+          <p className="text-body-lg text-text-secondary">{chapter.subtitle}</p>
+
+          <div className="mt-5 rounded-lg border border-border bg-bg-secondary/80 p-3">
+            <div className="flex items-center justify-between text-caption text-text-muted mb-2">
+              <span>Narrative progression</span>
+              <span>{chapterPct}% complete</span>
+            </div>
+            <div className="h-1.5 rounded-full bg-bg-tertiary overflow-hidden">
+              <div className="h-full bg-accent-amber" style={{ width: `${chapterPct}%` }} />
+            </div>
+          </div>
         </motion.div>
 
-        {/* What Just Happened sidebar */}
         <WhatJustHappened facts={chapter.keyFacts} chapterTitle={chapter.title} />
 
-        {/* Main content area */}
         <div className="max-w-3xl mx-auto px-6 pb-12">
-          {/* Narrative */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>
             <NarrativeBlock content={chapter.narrative} />
           </motion.div>
 
-          {/* Primary sources */}
           {chapter.primarySources.map((source, i) => (
             <PrimarySourceCallout key={i} source={source} />
           ))}
 
-          {/* Chart */}
-          {chapter.chartConfig && (
-            <AutoAnimatedChart config={chapter.chartConfig} />
-          )}
+          {chapter.chartConfig && <AutoAnimatedChart config={chapter.chartConfig} />}
 
-          {/* Decision fork */}
+          {complexityMode === 'expert' && <CounterfactualLab chapterNumber={chapter.number} />}
+
           {chapter.decisionFork && (
             <DecisionFork
               fork={chapter.decisionFork}
@@ -114,10 +94,10 @@ export function ChapterRenderer({ chapter }: ChapterRendererProps) {
               onContinue={handleContinue}
               selectedOptionId={selectedOptionId}
               revealed={forkRevealed}
+              sources={chapter.primarySources}
             />
           )}
 
-          {/* If no decision fork, show continue button */}
           {!chapter.decisionFork && (
             <div className="text-center mt-12">
               <button
