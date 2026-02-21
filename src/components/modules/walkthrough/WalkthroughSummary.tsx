@@ -21,10 +21,12 @@ const HUMAN_COST = [
 ];
 
 export function WalkthroughSummary() {
-  const { decisions, resetWalkthrough } = useWalkthroughStore();
-  const { setViewMode } = useAppStore();
+  const { decisions, resetWalkthrough, simulationRuns } = useWalkthroughStore();
+  const { setViewMode, complexityMode } = useAppStore();
 
   const decisionCount = Object.keys(decisions).length;
+  const allRuns = Object.values(simulationRuns).flat();
+  const latestRun = allRuns[0];
 
   return (
     <motion.div
@@ -49,6 +51,23 @@ export function WalkthroughSummary() {
         </p>
       </motion.div>
 
+
+      {complexityMode === 'expert' && latestRun && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="mb-10 rounded-lg border border-accent-amber/30 bg-accent-amber/5 p-5"
+        >
+          <h2 className="text-heading-3 font-bold text-text-primary mb-2">Counterfactual model roll-up</h2>
+          <p className="text-body-sm text-text-secondary mb-3">Model-based estimate from your final chained run (seed {latestRun.seed}).</p>
+          <div className="grid sm:grid-cols-3 gap-3 text-body-sm">
+            <div className="rounded border border-border p-3 bg-bg-secondary">Cumulative recovery EV: {(latestRun.recovery_distribution.expectedValue * 100).toFixed(1)}%</div>
+            <div className="rounded border border-border p-3 bg-bg-secondary">Final liquidity gap (median): {latestRun.final_state_vector.liquidity_gap.toFixed(2)}</div>
+            <div className="rounded border border-border p-3 bg-bg-secondary">Regulatory settlement probability: {((latestRun.outcome_summary.find((o) => o.label === 'regulatory_settlement')?.probability ?? 0) * 100).toFixed(1)}%</div>
+          </div>
+        </motion.div>
+      )}
       {/* Human Cost Grid */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
