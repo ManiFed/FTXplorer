@@ -84,7 +84,7 @@ export function ChapterRenderer({ chapter, totalChapters }: ChapterRendererProps
 
           {chapter.chartConfig && <AutoAnimatedChart config={chapter.chartConfig} />}
 
-          {complexityMode === 'expert' && <CounterfactualLab chapterNumber={chapter.number} />}
+          {complexityMode === 'expert' && <CounterfactualLab chapterNumber={chapter.number} chapterId={chapter.id} chapterTitle={chapter.title} />}
 
           {chapter.decisionFork && (
             <DecisionFork
