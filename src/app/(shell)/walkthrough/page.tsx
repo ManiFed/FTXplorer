@@ -33,7 +33,7 @@ export default function WalkthroughPage() {
   return (
     <div className="relative">
       <ChapterProgress totalChapters={totalChapters} />
-      <ChapterRenderer chapter={chapter} />
+      <ChapterRenderer chapter={chapter} totalChapters={totalChapters} />
     </div>
   );
 }
